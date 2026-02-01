@@ -85,17 +85,3 @@ Projet développé dans le cadre de la formation **Développeur Web full stack**
 - Gestion de projet avec Git/GitHub
 
 ---
-
-**Version :** 1.0  
-**Date :** Janvier 2026  
-**Statut :** MVP (Minimum Viable Product)
-
-## B. Proposition d'architecture
-
-### Diagramme de cas d'utilisation
-
-![Diagramme de Cas d'Utilisation](docs/images/Use_case-BookBus.drawio.png)
-
-### Schéma de base de données (MCD/ERD)
-
-![Schéma de Base de Données](docs/images/daigramme_de_classe.PNG)
