@@ -1,59 +1,101 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# BookBus - Plateforme de Réservation de Bus
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Description
 
-## About Laravel
+BookBus est une plateforme web de réservation de billets de bus inter-villes au Maroc, inspirée de marKoub.ma. Elle permet aux voyageurs de rechercher et réserver des billets en ligne facilement.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Objectif
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Simplifier la réservation de billets de bus pour les voyageurs marocains et faciliter la gestion des voyages pour les compagnies de transport.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Utilisateurs
 
-## Learning Laravel
+- **Clients** : Voyageurs qui recherchent et réservent des billets
+- **Administrateurs** : Compagnies de bus qui gèrent leurs voyages et réservations
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## Fonctionnalités
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Pour les Clients
 
-## Laravel Sponsors
+- Rechercher des trajets par ville et date
+- Comparer les prix des différentes compagnies
+- Réserver et payer en ligne
+- Consulter l'historique des réservations
+- Annuler une réservation
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Pour les Administrateurs
 
-### Premium Partners
+- Gérer les compagnies de bus
+- Gérer les bus (immatriculation, modèle, capacité)
+- Créer et gérer les trajets
+- Programmer les voyages avec horaires et tarifs
+- Consulter les statistiques et rapports
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## Technologies
 
-## Contributing
+- **Backend** : Laravel 10+ (PHP 8.2+)
+- **Base de données** : MySQL
+- **Frontend** : Blade, Tailwind CSS
+- **Authentification** : Laravel Breeze
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Base de Données
 
-## Code of Conduct
+8 tables principales :
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- `users` - Utilisateurs
+- `bus_companies` - Compagnies de bus
+- `buses` - Véhicules
+- `routes` - Trajets entre villes
+- `trips` - Voyages programmés
+- `bookings` - Réservations
+- `payments` - Paiements
+- `seats` - Sièges réservés
 
-## Security Vulnerabilities
+## Compagnies Incluses
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- CTM
+- Supratours
+- SATAS
+- Pullman du Sud
+- Ghazala
+- Trans Ghazala
+- Nejme Chamal
+- Stareo
 
-## License
+## Exemples de Tarifs
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+| Trajet                 | Distance | Tarif  |
+| ---------------------- | -------- | ------ |
+| Casablanca → Rabat     | 87 km    | 45 DH  |
+| Casablanca → Marrakech | 241 km   | 75 DH  |
+| Casablanca → Fès       | 298 km   | 95 DH  |
+| Casablanca → Tanger    | 338 km   | 110 DH |
+| Casablanca → Agadir    | 508 km   | 140 DH |
+
+## Contexte
+
+Projet développé dans le cadre de la formation **Développeur Web full stack** .
+
+**Objectifs pédagogiques :**
+
+- Analyse d'un domaine métier
+- Conception de base de données
+- Modélisation UML
+- Installation et configuration Laravel
+- Gestion de projet avec Git/GitHub
+
+---
+
+**Version :** 1.0  
+**Date :** Janvier 2026  
+**Statut :** MVP (Minimum Viable Product)
+
+## B. Proposition d'architecture
+
+### Diagramme de cas d'utilisation
+
+![Diagramme de Cas d'Utilisation](docs/images/Use_case-BookBus.drawio.png)
+
+### Schéma de base de données (MCD/ERD)
+
+![Schéma de Base de Données](docs/images/daigramme_de_classe.PNG)
