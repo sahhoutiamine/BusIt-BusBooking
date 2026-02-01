@@ -83,5 +83,3 @@ Projet développé dans le cadre de la formation **Développeur Web full stack**
 - Modélisation UML
 - Installation et configuration Laravel
 - Gestion de projet avec Git/GitHub
-
----
