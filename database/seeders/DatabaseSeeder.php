@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Schema;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,14 +12,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Disable foreign key constraints to allow truncating
+        Schema::disableForeignKeyConstraints();
+
         $this->call([
-            VilleSeeder::class,
-            CompanySeeder::class,
             UserSeeder::class,
+            VilleSeeder::class,
+            GareSeeder::class,
+            BusSeeder::class,
+            RouteSeeder::class,
+            EtapeSeeder::class,
             ProgrammeSeeder::class,
-            TripSeeder::class,
-            SeatSeeder::class,
+            SegmentSeeder::class,
             ReservationSeeder::class,
         ]);
+
+        Schema::enableForeignKeyConstraints();
     }
 }
