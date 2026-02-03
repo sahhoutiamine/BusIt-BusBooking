@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
@@ -13,48 +14,38 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create owners
+        User::truncate();
+
+        // Create Admin
         User::create([
-            'name' => 'Ahmed Alami',
-            'email' => 'ahmed.owner@busit.ma',
+            'name' => 'Admin User',
+            'email' => 'admin@busit.com',
+            'email_verified_at' => now(),
             'password' => Hash::make('password'),
-            'user_type' => 'owner',
+            'role' => 'admin',
+            'phone' => '0600000000',
+            'remember_token' => Str::random(10),
+        ]);
+
+        // Create Clients
+        User::create([
+            'name' => 'Client One',
+            'email' => 'client1@busit.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+            'role' => 'client',
+            'phone' => '0611111111',
+            'remember_token' => Str::random(10),
         ]);
 
         User::create([
-            'name' => 'Fatima Bennis',
-            'email' => 'fatima.owner@busit.ma',
+            'name' => 'Client Two',
+            'email' => 'client2@busit.com',
+            'email_verified_at' => now(),
             'password' => Hash::make('password'),
-            'user_type' => 'owner',
-        ]);
-
-        // Create passengers
-        User::create([
-            'name' => 'Mohammed Tazi',
-            'email' => 'mohammed@example.com',
-            'password' => Hash::make('password'),
-            'user_type' => 'passenger',
-        ]);
-
-        User::create([
-            'name' => 'Amina Idrissi',
-            'email' => 'amina@example.com',
-            'password' => Hash::make('password'),
-            'user_type' => 'passenger',
-        ]);
-
-        User::create([
-            'name' => 'Youssef Benjelloun',
-            'email' => 'youssef@example.com',
-            'password' => Hash::make('password'),
-            'user_type' => 'passenger',
-        ]);
-
-        User::create([
-            'name' => 'Khadija El Fassi',
-            'email' => 'khadija@example.com',
-            'password' => Hash::make('password'),
-            'user_type' => 'passenger',
+            'role' => 'client',
+            'phone' => '0622222222',
+            'remember_token' => Str::random(10),
         ]);
     }
 }
