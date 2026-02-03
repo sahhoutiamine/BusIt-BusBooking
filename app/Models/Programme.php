@@ -9,67 +9,24 @@ class Programme extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'ville_depart_id',
-        'ville_arrivee_id',
-        'heure_depart',
-        'heure_arrivee',
-        'is_active',
-    ];
+    protected $fillable = ['route_id', 'jour_depart', 'heure_depart', 'heure_arrivee', 'is_active'];
 
     protected $casts = [
-        'heure_depart' => 'datetime:H:i',
-        'heure_arrivee' => 'datetime:H:i',
         'is_active' => 'boolean',
     ];
 
-    /**
-     * Get the departure city.
-     */
-    public function villeDepart()
+    public function route()
     {
-        return $this->belongsTo(Ville::class, 'ville_depart_id');
+        return $this->belongsTo(Route::class);
     }
 
-    /**
-     * Get the arrival city.
-     */
-    public function villeArrivee()
+    public function segments()
     {
-        return $this->belongsTo(Ville::class, 'ville_arrivee_id');
+        return $this->hasMany(Segment::class);
     }
-
-    /**
-     * Get the trips for this programme.
-     */
-    public function trips()
-    {
-        return $this->hasMany(Trip::class);
-    }
-
-    /**
-     * Check if the programme is active.
-     */
+    
     public function isActive(): bool
     {
         return $this->is_active;
-    }
-
-    /**
-     * Activate the programme.
-     */
-    public function activate()
-    {
-        $this->is_active = true;
-        $this->save();
-    }
-
-    /**
-     * Deactivate the programme.
-     */
-    public function deactivate()
-    {
-        $this->is_active = false;
-        $this->save();
     }
 }
