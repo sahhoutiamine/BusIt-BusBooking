@@ -2,53 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Ville extends Model
 {
-    use \Illuminate\Database\Eloquent\Factories\HasFactory;
+    use HasFactory;
 
-    protected $fillable = [
-        'nom',
-    ];
+    protected $fillable = ['name'];
 
-    /**
-     * Get programmes departing from this city.
-     */
-    public function programmesDeparture()
+    public function gares()
     {
-        return $this->hasMany(Programme::class, 'ville_depart_id');
-    }
-
-    /**
-     * Get programmes arriving to this city.
-     */
-    public function programmesArrival()
-    {
-        return $this->hasMany(Programme::class, 'ville_arrivee_id');
-    }
-
-    /**
-     * Get trips departing from this city.
-     */
-    public function tripsDeparture()
-    {
-        return $this->hasMany(Trip::class, 'ville_depart_id');
-    }
-
-    /**
-     * Get trips arriving to this city.
-     */
-    public function tripsArrival()
-    {
-        return $this->hasMany(Trip::class, 'ville_arrivee_id');
-    }
-
-    /**
-     * Get all villes (static method as per class diagram).
-     */
-    public static function getVilles()
-    {
-        return self::all();
+        return $this->hasMany(Gare::class);
     }
 }
