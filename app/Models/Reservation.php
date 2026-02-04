@@ -14,7 +14,7 @@ class Reservation extends Model
         'segment_id', 
         'date_reservation', 
         'statut', 
-        'siege_numero'
+        'total_price'
     ];
 
     public function user()
@@ -26,6 +26,11 @@ class Reservation extends Model
     {
         return $this->belongsTo(Segment::class);
     }
+
+    public function passengers()
+    {
+        return $this->hasMany(Passenger::class);
+    }
     
     public function cancel()
     {
@@ -33,9 +38,10 @@ class Reservation extends Model
         return $this->save();
     }
     
-    public function getTicket()
+    public function getTickets()
     {
-        // Logic to retrieve ticket details
-        return "Ticket for Seat " . $this->siege_numero;
+        return $this->passengers()->get()->map(function($p) {
+            return "Ticket for " . $p->nom_complet;
+        });
     }
 }
