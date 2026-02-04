@@ -60,9 +60,9 @@
                                     </div>
                                     <div class="mt-4 md:mt-0 md:ml-8 text-center md:text-right">
                                         <div class="text-3xl font-bold text-gray-900 text-blue-600">{{ number_format($segment->tarif, 2) }} MAD</div>
-                                        <button class="mt-2 w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                        <a href="{{ route('booking.create', ['segment_id' => $segment->id, 'date' => $searchDate->format('Y-m-d')]) }}" class="mt-2 w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                                             Select
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
