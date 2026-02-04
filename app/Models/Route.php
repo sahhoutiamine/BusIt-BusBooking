@@ -26,8 +26,4 @@ class Route extends Model
         return $this->nom . ': ' . $this->description;
     }
 
-    public function getDetailss()
-    {
-        return $this->nom . ': ' . $this->description;
-    }
 }
