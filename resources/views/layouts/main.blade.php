@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Satas - Bus Booking</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -20,6 +21,31 @@
                             SATAS
                         </a>
                     </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="flex items-center space-x-6">
+                    @auth
+                        <div class="flex items-center space-x-6">
+                            <a href="{{ route('booking.index') }}" class="flex items-center text-sm font-bold text-gray-600 hover:text-blue-600 transition group">
+                                <svg class="w-5 h-5 mr-1.5 text-gray-400 group-hover:text-blue-500 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                                My Bookings
+                            </a>
+                            <div class="h-6 w-px bg-gray-200"></div>
+                            <div class="flex items-center space-x-4">
+                                <span class="text-sm font-medium text-gray-700">Hi, <span class="font-black text-blue-600">{{ Auth::user()->name }}</span></span>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit" class="text-xs font-black uppercase tracking-widest text-red-500 hover:text-red-600 transition">Logout</button>
+                                </form>
+                            </div>
+                        </div>
+                    @else
+                        <a href="{{ route('login') }}" class="text-sm font-bold text-gray-600 hover:text-blue-600 transition">Login</a>
+                        <a href="{{ route('register') }}" class="inline-flex items-center px-6 py-2.5 border border-transparent text-sm font-black rounded-xl shadow-lg shadow-blue-100 text-white bg-blue-600 hover:bg-blue-700 transition transform hover:-translate-y-0.5">
+                            Register
+                        </a>
+                    @endauth
                 </div>
             </div>
         </div>
