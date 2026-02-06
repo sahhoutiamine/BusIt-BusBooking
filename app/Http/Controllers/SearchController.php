@@ -12,6 +12,7 @@ class SearchController extends Controller
     public function index()
     {
         $villes = Ville::orderBy('name')->get();
+        
         return view('search.index', compact('villes'));
     }
 
@@ -21,8 +22,10 @@ class SearchController extends Controller
             'ville_depart_id' => 'required|exists:villes,id',
             'ville_arrivee_id' => 'required|exists:villes,id',
             'date_depart' => 'required|date',
+            'passengers_count' => 'nullable|integer|min:1|max:10',
         ]);
 
+        $passengersCount = $request->input('passengers_count', 1);
         $dateDepart = Carbon::parse($request->date_depart);
         // Map English day names to French as stored in DB (e.g. 'Monday' -> 'Lundi')
         // Or simply strict match if DB uses English. ProgrammeSeeder used French ('Lundi')
@@ -40,10 +43,10 @@ class SearchController extends Controller
 
         // Direct Segments
         // Find segments where:
-        // 1. Programme runs on this day
+        // 1. One of its Programmes runs on this day
         // 2. Start Gare is in Start Ville
         // 3. End Gare is in End Ville
-        $directSegments = Segment::whereHas('programme', function($q) use ($dayName) {
+        $directSegments = Segment::whereHas('programmes', function($q) use ($dayName) {
             $q->where('jour_depart', $dayName)
               ->where('is_active', true);
         })
@@ -53,22 +56,22 @@ class SearchController extends Controller
         ->whereHas('endGare', function($q) use ($request) {
             $q->where('ville_id', $request->ville_arrivee_id);
         })
-        ->with(['programme', 'bus', 'startGare.ville', 'endGare.ville'])
+        ->with(['programmes' => function($q) use ($dayName) {
+             $q->where('jour_depart', $dayName);
+        }, 'bus', 'startGare.ville', 'endGare.ville'])
         ->get()
         ->sortBy(function($segment) {
-            return $segment->programme->heure_depart;
+            return $segment->programmes->first()->heure_depart;
         });
 
         // Indirect Routes (Simplification: limiting to this example for now)
         $indirectRoutes = [];
         
-        // TODO: Implement sophisticated indirect routing if needed. 
-        // For now returning empty to focus on Direct functionality.
-
         return view('search.results', [
             'directTrips' => $directSegments, 
             'indirectRoutes' => $indirectRoutes,
-            'searchDate' => $dateDepart
+            'searchDate' => $dateDepart,
+            'passengersCount' => $passengersCount
         ]);
     }
 }
