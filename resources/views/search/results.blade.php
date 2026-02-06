@@ -12,6 +12,8 @@
                     <span class="font-semibold text-blue-600">{{ App\Models\Ville::find(request('ville_arrivee_id'))->name ?? 'Unknown' }}</span>
                     <span class="ml-2 text-gray-400">|</span>
                     <span class="ml-2">{{ \Carbon\Carbon::parse(request('date_depart'))->format('D, d M Y') }}</span>
+                    <span class="ml-2 text-gray-400">|</span>
+                    <span class="ml-2"><span class="font-bold text-gray-900">{{ $passengersCount }}</span> Passenger(s)</span>
                 </p>
             </div>
             <a href="{{ route('search.index') }}" class="text-blue-600 hover:text-blue-800 font-medium bg-blue-50 px-4 py-2 rounded-lg">Modify Search</a>
@@ -60,7 +62,7 @@
                                     </div>
                                     <div class="mt-4 md:mt-0 md:ml-8 text-center md:text-right">
                                         <div class="text-3xl font-bold text-gray-900 text-blue-600">{{ number_format($segment->tarif, 2) }} MAD</div>
-                                        <a href="{{ route('booking.create', ['segment_id' => $segment->id, 'date' => $searchDate->format('Y-m-d')]) }}" class="mt-2 w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                        <a href="{{ route('booking.create', ['segment' => $segment->id, 'date' => $searchDate->format('Y-m-d'), 'passengers_count' => $passengersCount]) }}" class="mt-2 w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                                             Select
                                         </a>
                                     </div>
