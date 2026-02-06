@@ -41,12 +41,26 @@
                                     <label for="date_depart" class="block text-sm font-medium text-gray-700 mb-1">Date</label>
                                     <input type="date" name="date_depart" id="date_depart" class="block w-full pl-3 pr-3 py-3 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-lg bg-gray-50" value="{{ date('Y-m-d') }}">
                                 </div>
+
+                                <div class="relative">
+                                    <label for="passengers_count" class="block text-sm font-medium text-gray-700 mb-1">Passengers</label>
+                                    <input type="number" name="passengers_count" id="passengers_count" min="1" max="10" value="1" class="block w-full pl-3 pr-3 py-3 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-lg bg-gray-50">
+                                </div>
                             </div>
                             
                             <div class="pt-2">
                                 <button type="submit" class="w-full flex justify-center py-3.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out transform hover:-translate-y-0.5">
-                                    Search Trips
+                                    @guest
+                                        Login & Search Trips
+                                    @else
+                                        Search Trips
+                                    @endguest
                                 </button>
+                                @guest
+                                    <p class="mt-3 text-center text-xs text-gray-400 uppercase tracking-widest font-bold">
+                                         Sign in to view live availability & prices
+                                    </p>
+                                @endguest
                             </div>
                         </form>
                     </div>
