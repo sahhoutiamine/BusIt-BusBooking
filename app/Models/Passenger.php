@@ -12,12 +12,12 @@ class Passenger extends Model
         'reservation_id',
         'nom_complet',
         'cin',
-        'date_naissance',
         'type',
         'has_insurance',
         'has_snack_box',
         'prix_billet',
         'prix_options',
+        'siege_numero',
     ];
 
     public function reservation()

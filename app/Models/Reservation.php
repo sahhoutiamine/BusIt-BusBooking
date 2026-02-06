@@ -27,6 +27,23 @@ class Reservation extends Model
         return $this->belongsTo(Segment::class);
     }
 
+    public function getProgrammeAttribute()
+    {
+        $date = \Carbon\Carbon::parse($this->date_reservation);
+        $daysMap = [
+            'Monday' => 'Lundi',
+            'Tuesday' => 'Mardi',
+            'Wednesday' => 'Mercredi',
+            'Thursday' => 'Jeudi',
+            'Friday' => 'Vendredi',
+            'Saturday' => 'Samedi',
+            'Sunday' => 'Dimanche',
+        ];
+        $dayName = $daysMap[$date->format('l')] ?? $date->format('l');
+
+        return $this->segment->programmes->firstWhere('jour_depart', $dayName);
+    }
+
     public function passengers()
     {
         return $this->hasMany(Passenger::class);

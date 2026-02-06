@@ -13,7 +13,6 @@ return new class extends Migration
             $table->foreignId('reservation_id')->constrained('reservations')->onDelete('cascade');
             $table->string('nom_complet');
             $table->string('cin')->nullable(); // Required for adults
-            $table->date('date_naissance');
             $table->string('type')->default('adulte'); // adulte, enfant
             $table->boolean('has_insurance')->default(false);
             $table->boolean('has_snack_box')->default(false);

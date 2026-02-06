@@ -22,7 +22,7 @@ class Programme extends Model
 
     public function segments()
     {
-        return $this->hasMany(Segment::class);
+        return $this->belongsToMany(Segment::class, 'programme_segment')->withTimestamps();
     }
     
     public function isActive(): bool

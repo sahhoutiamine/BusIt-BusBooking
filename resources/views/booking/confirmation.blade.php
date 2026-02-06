@@ -32,7 +32,7 @@
                         <div class="text-center sm:text-left mb-4 sm:mb-0">
                             <p class="text-sm text-gray-500">Departure</p>
                             <p class="text-lg font-bold text-gray-900">{{ $reservation->segment->startGare->ville->name }}</p>
-                            <p class="text-sm text-gray-600">{{ \Carbon\Carbon::parse($reservation->segment->programme->heure_depart)->format('H:i') }}</p>
+                            <p class="text-sm text-gray-600">{{ \Carbon\Carbon::parse($reservation->programme->heure_depart ?? '00:00')->format('H:i') }}</p>
                         </div>
                         <div class="hidden sm:block flex-1 border-t-2 border-dashed border-gray-300 mx-6 relative">
                             <div class="absolute -top-1.5 left-0 w-3 h-3 bg-gray-300 rounded-full"></div>
@@ -55,7 +55,7 @@
                                     <p class="font-medium text-gray-900">{{ $p->nom_complet }}</p>
                                     <p class="text-xs text-gray-500">{{ ucfirst($p->type) }} {{ $p->cin ? '- CIN: ' . $p->cin : '' }}</p>
                                 </div>
-                                <div class="text-sm font-semibold text-gray-700">Seat: Assigned at Station</div>
+                                <div class="text-sm font-bold text-blue-600">Seat: {{ $p->siege_numero }}</div>
                             </div>
                         @endforeach
                     </div>
@@ -66,8 +66,12 @@
                     <p class="text-3xl font-bold text-green-600">{{ number_format($reservation->total_price, 2) }} MAD</p>
                 </div>
 
-                <div class="mt-8">
-                    <a href="{{ route('search.index') }}" class="w-full flex justify-center py-3 px-4 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                <div class="mt-8 flex flex-col sm:flex-row gap-4">
+                    <a href="{{ route('booking.ticket', $reservation) }}" class="flex-1 flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+                        Print Official Tickets
+                    </a>
+                    <a href="{{ route('search.index') }}" class="flex-1 flex justify-center py-3 px-4 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                         Book Another Trip
                     </a>
                 </div>

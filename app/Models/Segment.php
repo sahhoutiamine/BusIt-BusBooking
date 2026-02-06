@@ -10,7 +10,6 @@ class Segment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'programme_id', 
         'bus_id', 
         'start_gare_id', 
         'end_gare_id', 
@@ -19,9 +18,14 @@ class Segment extends Model
         'distance_km'
     ];
 
-    public function programme()
+    public function programmes()
     {
-        return $this->belongsTo(Programme::class);
+        return $this->belongsToMany(Programme::class, 'programme_segment')->withTimestamps();
+    }
+    
+    public function getProgrammeAttribute()
+    {
+        return $this->programmes->first();
     }
 
     public function bus()
